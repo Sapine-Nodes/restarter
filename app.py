@@ -20,6 +20,7 @@ GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
 GITHUB_REPO = os.environ.get('GITHUB_REPO', '')  # Format: owner/repo
 WORKFLOW_FILE = os.environ.get('WORKFLOW_FILE', '')  # e.g., main.yml
 CHECK_INTERVAL = int(os.environ.get('CHECK_INTERVAL', '60'))  # seconds
+TRIGGER_WAIT_TIME = 10  # seconds to wait after triggering before next check
 PORT = int(os.environ.get('PORT', '10000'))
 
 # State management
@@ -138,8 +139,8 @@ def monitor_and_trigger():
                 if success:
                     with monitor_lock:
                         monitor_state['triggered_workflows'] += 1
-                    logger.info("Workflow triggered successfully. Waiting for it to start...")
-                    time.sleep(10)  # Wait a bit for the workflow to start
+                    logger.info(f"Workflow triggered successfully. Waiting {TRIGGER_WAIT_TIME}s for it to start...")
+                    time.sleep(TRIGGER_WAIT_TIME)
                 else:
                     logger.error("Failed to trigger workflow")
             else:

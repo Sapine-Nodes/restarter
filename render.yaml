@@ -13,6 +13,4 @@ services:
       - key: WORKFLOW_FILE
         sync: false
       - key: CHECK_INTERVAL
-        value: 60
-      - key: PORT
-        value: 10000
+        value: '60'
