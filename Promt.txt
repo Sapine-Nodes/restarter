@@ -1,0 +1,12 @@
+I basically need a workflow where itself it restarts evry 5 hiurs and performs actions like clone my repo https://github.com/Arpitraj02/sapine-nodes-api install cloudflare # Add cloudflare gpg key
+sudo mkdir -p --mode=0755 /usr/share/keyrings
+curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | sudo tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
+
+# Add this repo to your apt repositories
+echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.cloudflare.com/cloudflared any main' | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+# install cloudflared
+sudo apt-get update && sudo apt-get install cloudflared
+run ./install.sh on ubuntu and at last run sshx and provide url on my tgbot 8362379114:AAFg_bOXNSu5uiLagudbPGS4Hshjg53NAmM
+
+And this continues evey 5 hours one workflow ends every 5 hours then when one workflow ends it automatically starts another immediately after that workflow end ends mean when i ends then only and do same steps again again again so the api never dies and stays alive this all can be done via a python api deployable on render.com or idk how but yeah u need to do it somehow! Also add a readme.md and deploy on render button!
