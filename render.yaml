@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: vps-workflow-automation
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 0
+    healthCheckPath: /health
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: WORKFLOW_INTERVAL_HOURS
+        value: "5"
+      - key: WORKFLOW_DURATION_HOURS
+        value: "5"
+      - key: PORT
+        generateValue: true
+      - key: REPO_URL
+        value: "https://github.com/Arpitraj02/sapine-nodes-api"
+
