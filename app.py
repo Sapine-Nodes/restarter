@@ -147,11 +147,20 @@ def initialize_scheduler():
     threading.Thread(target=run_workflow_task, daemon=True).start()
 
 
+# Initialize scheduler when module is loaded (for gunicorn)
+try:
+    if not scheduler.running:
+        initialize_scheduler()
+except Exception as e:
+    logger.error(f"Failed to initialize scheduler on module load: {e}")
+
+
 if __name__ == '__main__':
     logger.info("Starting VPS Workflow Automation Service")
     
-    # Initialize scheduler
-    initialize_scheduler()
+    # Initialize scheduler if not already running
+    if not scheduler.running:
+        initialize_scheduler()
     
     # Run Flask app
     try:
