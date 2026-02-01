@@ -142,9 +142,9 @@ def initialize_scheduler():
     scheduler.start()
     logger.info(f"Scheduler initialized. Workflows will run every {WORKFLOW_INTERVAL_HOURS} hours")
     
-    # Optionally, trigger the first workflow immediately
-    # Uncomment the next line if you want the workflow to start right away
-    # threading.Thread(target=run_workflow_task, daemon=True).start()
+    # Trigger the first workflow immediately on startup
+    logger.info("Triggering initial workflow on startup")
+    threading.Thread(target=run_workflow_task, daemon=True).start()
 
 
 if __name__ == '__main__':

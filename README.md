@@ -90,7 +90,14 @@ Each workflow execution performs the following steps:
    WORKFLOW_DURATION_HOURS=5
    ```
 
-5. **Run the application**
+5. **Test the setup (optional but recommended)**
+   ```bash
+   python test_setup.py
+   ```
+   
+   This will verify all dependencies and configuration.
+
+6. **Run the application**
    ```bash
    python app.py
    ```
@@ -150,6 +157,17 @@ Manually trigger a workflow (only if no workflow is currently running)
 ```
 
 ## Getting Your Telegram Chat ID
+
+### Method 1: Using the Helper Script (Recommended)
+
+1. Send a message to your bot on Telegram (any message)
+2. Run the helper script:
+   ```bash
+   python get_chat_id.py YOUR_BOT_TOKEN
+   ```
+3. Copy the Chat ID from the output
+
+### Method 2: Using @userinfobot
 
 1. Start a chat with [@userinfobot](https://t.me/userinfobot) on Telegram
 2. The bot will respond with your user information including your Chat ID
